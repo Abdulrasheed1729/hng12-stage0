@@ -1,6 +1,12 @@
 ## HNG 12 Stage 0 Task
 
+Submission for [HNG](https://hng.tech) 12 internship.
 This is a simple backend API built with the [Go](https://go.dev) programming language.
+
+### Choosen Programming language
+The [Go](https://go.dev) programming language
+
+Backlink: https://hng.tech/hire/golang-developers
 
 ### API Endpoints
 There is only one endpoint in the API:
@@ -12,6 +18,12 @@ There is only one endpoint in the API:
   "current_datetime": "2025-01-29T18:53:06Z",
   "github_url": "https://github.com/Abdulrasheed1729/hng12-stage0"
 }
+```
+
+### Usage
+
+```sh
+curl -X GET https://hng12-stage0-f7pg.onrender.com/
 ```
 
 ### Local Setup

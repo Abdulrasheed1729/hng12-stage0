@@ -28,15 +28,24 @@ func (p *profilehandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	// Format the time to ISO 8601 (UTC) format
 	currentTime := time.Now().UTC().Format(time.RFC3339)
 
+	w.Header().Add("Access-Control-Allow-Methods", "GET")
+	w.Header().Add("Access-Control-Allow-Origin", "*")
+
 	response := Response{
 		Email:           EMAIL,
 		CurrentDatetime: currentTime,
 		GithubUrl:       GITHUBURL}
 
+	if r.Method != http.MethodGet {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		w.Write([]byte("Request method not allowed"))
+		return
+	}
+
 	err := WriteJSON(w, http.StatusOK, response)
 
 	if err != nil {
-		WriteJSON(w, http.StatusOK, ErrorResponse{Error: err.Error()})
+		WriteJSON(w, http.StatusInternalServerError, ErrorResponse{Error: err.Error()})
 		return
 	}
 }
